@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+	<form style="width:400px">
+		<fieldset>
+			<legend>信息</legend>
+			姓名:<br>
+			<input type='text' data-bind="user.name"></input><br/>
+			年龄:<br>
+			<input type='text' data-bind="user.age"></input>
+			<button type="button" onclick="data.user.add()">+</button>
+			<button type="button" onclick="data.user.dec()">-</button>
+			<br/>
+			Gender:<br>
+			<select data-bind="user.gender">
+			    <option disabled selected value></option>
+			    <option value="男">男</option>
+			    <option value="女">女</option>
+			</select>
+		</fieldset>
+    </form>
+    <br>
+    <h3>信息</h3>
+    <strong>
+        姓名:
+    </strong>
+    <label data-bind="user.name"></label><br>
+     <strong>
+        年龄:
+    </strong>
+    <label data-bind="user.age"></label><br>
+     <strong>
+        性别:
+    </strong>
+    <label data-bind="user.gender"></label><br>
+</body>
+<script src='dataBind.js'></script>
+<script>
+	var data = new dataBind();
+
+	data.user = {
+	    'name': '小明儿',
+	    'age': 29,
+	    'gender': '男'
+	};
+
+	data.user.add = function() {
+	    data.user.age += 1;
+	    data.digest();
+	}
+	data.user.dec = function() {
+	    data.user.age -= 1;
+	    data.digest();
+	}
+	// manually run the digest during the initializtion stage
+	data.digest();
+</script>
+</html>
